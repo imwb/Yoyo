@@ -3,4 +3,12 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!--缺省的登录配置-->
+    <integer name="xmpp_port">5222</integer>
+    <string name="xmpp_host"></string>
+    <string name="xmpp_service_name">gmail.com</string>
+    <bool name="is_remember">true</bool>
+    <bool name="is_autologin">false</bool>
+
 </resources>

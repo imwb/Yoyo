@@ -2,15 +2,7 @@ package wb.com.yoyo.Activity.Tast;
 
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 
-import org.jivesoftware.smack.RosterEntry;
-import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Presence;
-import org.jivesoftware.smack.packet.XMPPError;
 import org.jivesoftware.smackx.packet.VCard;
 
 
@@ -25,7 +17,7 @@ import android.widget.Toast;
 
 
 import wb.com.yoyo.Activity.ActivitySupport;
-import wb.com.yoyo.MainActivity;
+import wb.com.yoyo.Activity.MainActivity;
 import wb.com.yoyo.Manager.SPManager;
 import wb.com.yoyo.Manager.UserManager;
 import wb.com.yoyo.Manager.XmppManager;
@@ -35,8 +27,6 @@ import wb.com.yoyo.Service.ContactService;
 import wb.com.yoyo.Service.IMChatService;
 import wb.com.yoyo.Utils.BitmapUtils;
 import wb.com.yoyo.comm.Constant;
-
-import static wb.com.yoyo.Manager.UserManager.*;
 
 /**
  * 登录异步任务类

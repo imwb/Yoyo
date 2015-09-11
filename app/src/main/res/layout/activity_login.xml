@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/bg"
 
     >
@@ -51,7 +51,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <CheckBox
                 android:id="@+id/cb_remember"
@@ -60,7 +60,8 @@
                 android:layout_weight="1"
                 android:textColor="#ababab"
                 android:singleLine="true"
-                android:text="记住密码" />
+                android:text="记住密码"
+                android:checked="false" />
 
             <CheckBox
                 android:id="@+id/cb_autologin"
@@ -85,10 +86,10 @@
             android:id="@+id/but_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#EDEDED"
+            android:background="@drawable/shape_btn"
             android:text="登录"
             android:layout_marginTop="5dp"
-            android:textColor="#545454"
+            android:textColor="#fff"
             android:textStyle="bold"/>
 
     </LinearLayout>

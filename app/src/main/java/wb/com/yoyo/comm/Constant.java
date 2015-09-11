@@ -17,4 +17,17 @@ public class Constant {
     public static final String IS_REMEMBER = "isRemember";// 是否记住账户密码
     public static final String IS_FIRSTSTART = "isFirstStart";// 是否首次启动
     public static final String AVATAR_PATH = "avatar_path";//头像路径
+
+    /**
+     * 登录提示
+     */
+    public static final int LOGIN_SECCESS = 0;// 成功
+    public static final int HAS_NEW_VERSION = 1;// 发现新版本
+    public static final int IS_NEW_VERSION = 2;// 当前版本为最新
+    public static final int LOGIN_ERROR_ACCOUNT_PASS = 3;// 账号或者密码错误
+    public static final int SERVER_UNAVAILABLE = 4;// 无法连接到服务器
+    public static final int LOGIN_ERROR = 5;// 连接失败
+    public static final String XMPP_CONNECTION_CLOSED = "xmpp_connection_closed";// 连接中断
+    public static final String LOGIN = "login"; // 登录
+    public static final String RELOGIN = "relogin"; // 重新登录
 }

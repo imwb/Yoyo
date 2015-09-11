@@ -11,4 +11,21 @@
     <bool name="is_remember">true</bool>
     <bool name="is_autologin">false</bool>
 
+    <!-- 网络和内存卡提示 -->
+    <string name="prompt">提示</string>
+    <string name="check_connection">无可用网络连接，请检查网络设置！</string>
+    <string name="check_sdcard">请检查内存卡！</string>
+    <string name="menu_settings">设置</string>
+    <string name="close">关闭</string>
+    <string name="exit">退出</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+
+    <!-- 登录提示 -->
+    <string name="message_invalid_username_password">错误的用户名或密码</string>
+    <string name="message_server_unavailable">无法连接到服务器</string>
+    <string name="message_user_disabled">用户被禁用</string>
+    <string name="message_user_expired">账户已过期</string>
+    <string name="message_userip_no_access">IP不合法,已被禁用</string>
+    <string name="unrecoverable_error">发生未知异常,连接失败</string>
 </resources>

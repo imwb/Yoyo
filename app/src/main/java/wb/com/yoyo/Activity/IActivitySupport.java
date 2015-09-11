@@ -14,7 +14,7 @@ public interface IActivitySupport {
      * 获取 application
      * @return
      */
-    public abstract YoyoAppliacation getMyApplication();
+    public abstract YoyoApp getMyApplication();
 
     /**
      * 停止服务
@@ -54,6 +54,7 @@ public interface IActivitySupport {
      */
     public abstract void showToast(String text, int longint);
 
+    public abstract void showToast(String text);
     /**
      * 获取进度条.
      * @return

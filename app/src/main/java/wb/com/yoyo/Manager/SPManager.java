@@ -18,7 +18,7 @@ public class SPManager {
     private SharedPreferences sp;
     private Context context;
 
-    private SPManager(Context context) {
+    public SPManager(Context context) {
 
         this.context=context;
         sp=context.getSharedPreferences(Constant.LOGIN_SET, Activity.MODE_PRIVATE);
@@ -50,5 +50,18 @@ public class SPManager {
         config.setAvatarpath(avatarpath);
 
         return config;
+    }
+
+    public void saveLoginConfig(LoginConfig loginConfig) {
+
+        sp.edit().putString(Constant.XMPP_HOST, loginConfig.getXmppHost()).commit();
+        sp.edit().putInt(Constant.XMPP_PORT, loginConfig.getXmppPort()).commit();
+        sp.edit().putString(Constant.USERNAME,loginConfig.getUsername()).commit();
+        sp.edit().putString(Constant.PASSWORD,loginConfig.getPassword()).commit();
+        sp.edit().putBoolean(Constant.IS_AUTOLOGIN,loginConfig.isAutoLogin()).commit();
+        sp.edit().putBoolean(Constant.IS_FIRSTSTART,loginConfig.isFirstStart()).commit();
+        sp.edit().putBoolean(Constant.IS_REMEMBER,loginConfig.isRemember()).commit();
+        sp.edit().putString(Constant.AVATAR_PATH,loginConfig.getAvatarpath()).commit();
+
     }
 }

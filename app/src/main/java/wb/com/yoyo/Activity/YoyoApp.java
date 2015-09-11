@@ -5,6 +5,9 @@ import android.app.Application;
 /**
  * Created by wb on 15/9/10.
  */
-public class YoyoAppliacation extends Application{
+public class YoyoApp extends Application{
 
+    public void exit() {
+
+    }
 }

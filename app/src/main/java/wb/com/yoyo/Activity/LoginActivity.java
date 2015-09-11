@@ -71,6 +71,7 @@ public class LoginActivity extends ActivitySupport{
         btn_login=(Button) findViewById(R.id.but_login);
         tx_setconfig=(TextView) findViewById(R.id.tv_logconfig);
         tv_reg=(TextView) findViewById(R.id.tv_reg);
+        avatar= (ImageView) findViewById(R.id.iv_avatar);
 
         edt_username.setText(loginConfig.getUsername());
         if(loginConfig.isRemember()){

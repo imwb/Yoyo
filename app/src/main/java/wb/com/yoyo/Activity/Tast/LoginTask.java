@@ -2,6 +2,7 @@ package wb.com.yoyo.Activity.Tast;
 
 
 import java.io.File;
+import java.util.List;
 
 import org.jivesoftware.smackx.packet.VCard;
 
@@ -18,10 +19,12 @@ import android.widget.Toast;
 
 import wb.com.yoyo.Activity.ActivitySupport;
 import wb.com.yoyo.Activity.MainActivity;
+import wb.com.yoyo.Manager.ContactsManager;
 import wb.com.yoyo.Manager.SPManager;
 import wb.com.yoyo.Manager.UserManager;
 import wb.com.yoyo.Manager.XmppManager;
 import wb.com.yoyo.Model.LoginConfig;
+import wb.com.yoyo.Model.User;
 import wb.com.yoyo.R;
 import wb.com.yoyo.Service.ContactService;
 import wb.com.yoyo.Service.IMChatService;
@@ -38,7 +41,6 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 	private Context context;
 	private ActivitySupport activitySupport;
 	private LoginConfig loginConfig;
-	private UserManager userManager= UserManager.getInstance();
 
 	public LoginTask(Context context, LoginConfig loginConfig) {
 		this.loginConfig = loginConfig;
@@ -69,10 +71,15 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 			Toast.makeText(context, "登陆成功", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent();
 			if (loginConfig.isFirstStart()) {// 如果是首次启动
-				//intent.setClass(context, GuideViewActivity.class);
-				loginConfig.setIsFirstStart(false);
+				intent.setClass(context, MainActivity.class);
+				//loginConfig.setIsFirstStart(false);
+				ContactsManager contactsManager=new ContactsManager(context);
+				contactsManager.clearDB();
+				List<User> users=contactsManager.loadContacts();
+				contactsManager.savaContacts(users);
 
 			} else {
+				loginConfig.setIsFirstStart(true);
 				intent.setClass(context, MainActivity.class);
 			}
 			//intent.setClass(context, StartActivity.class);
@@ -86,11 +93,13 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 				//内存问题？？
 				String path=file.getPath()+loginConfig.getUsername()+".png";
 				loginConfig.setAvatarpath(path);
+				System.out.println(path);
 				}
 			//loginConfig.setFirstStart(true);
 
 			SPManager spManager=new SPManager(context);
 			spManager.saveLoginConfig(loginConfig);// 保存用户配置信息
+
 			startLoadService();
 			context.startActivity(intent);
 			activitySupport.finish();

@@ -158,8 +158,11 @@ public class BitmapUtils {
 			if (!f.exists()) {
 				f.mkdirs();
 			}
+			return new File(EXTERN_PATH );
+		}else {
+			return new File("/avatar");
 		}
-		return new File(EXTERN_PATH );
+
 	}
 
 	/**
@@ -180,14 +183,36 @@ public class BitmapUtils {
 	 * @param heigh 高
 	 * @author wb
 	 */
+	/*
+	    那是BitmapFactory.options类，主要会用到这个类的inSampleSize、inJustDecodeBounds、outHeight、outWidth参数。
+
+      inSampleSize：缩放比例，这个参数需要是2的幂函数。
+
+      inJustDecodeBounds：如果设置这个参数为ture，就不会给图片分配内存空间，但是可以获取到图片的大小等属性。
+      outHeight：图片高，单位像素.
+
+      outWidth：图片宽，单位像素.
+	 */
 	public static Bitmap getBitmapByOption(String path, int width,int heigh) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
+		//防止溢出
 		options.inJustDecodeBounds=true;
 		Bitmap bitmap=BitmapFactory.decodeFile(path,options);
 		int xScale = options.outWidth / width;  
-	    int yScale = options.outHeight / heigh;  
+	    int yScale = options.outHeight / heigh;
+
+		//缩放比例
 	    options.inSampleSize = xScale > yScale ? xScale : yScale; 
 		options.inJustDecodeBounds=false;
+
+		/**
+		编码格式
+		        ALPHA_8     (1),
+				RGB_565     (3),
+				ARGB_4444   (4),
+				ARGB_8888   (5);
+		*/
+		options.inPreferredConfig=Bitmap.Config.ARGB_4444;
 		bitmap = BitmapFactory.decodeFile(path, options);
 		return bitmap;
 	}

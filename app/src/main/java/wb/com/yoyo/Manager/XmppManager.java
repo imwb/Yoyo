@@ -63,8 +63,8 @@ public class XmppManager {
     // init
     public static XMPPConnection init(LoginConfig loginConfig) {
         Connection.DEBUG_ENABLED = false;
-//        ProviderManager pm = ProviderManager.getInstance();
-//        configure(pm);
+        ProviderManager pm = ProviderManager.getInstance();
+        configure(pm);
         connectionConfig = new ConnectionConfiguration(
                 loginConfig.getXmppHost(), loginConfig.getXmppPort(),
                 loginConfig.getXmppServiceName());
@@ -213,7 +213,8 @@ public class XmppManager {
             XMPPConnection connection=XmppManager.getConnection();
             connection.connect();
             //登录；
-            connection.login(username, password, "smack");
+         //   connection.login(username, password, "smack");
+            connection.login(username, password);
             //presence 表明用户状态
             connection.sendPacket(new Presence(Presence.Type.available));
 
@@ -225,6 +226,7 @@ public class XmppManager {
                 loginConfig.setPassword("");
             }
             try {
+                System.out.println("---loadconnncetion");
                 myvCard.load(connection);
             } catch (XMPPException e) {
                 e.printStackTrace();

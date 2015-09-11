@@ -87,19 +87,16 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 			if(vCard!=null&&vCard.getAvatar()!=null){
 				Bitmap bitmap=BitmapFactory.decodeByteArray(vCard.getAvatar(), 0, vCard.getAvatar().length);
 				File file= BitmapUtils.getImagePath();
-				System.out.println("file..." + file);
 				BitmapUtils.savaBitmap(file, loginConfig.getUsername()+".png", bitmap);
 //				StaticPara.userName=vCard.getNickName();
 				//内存问题？？
 				String path=file.getPath()+loginConfig.getUsername()+".png";
 				loginConfig.setAvatarpath(path);
-				System.out.println(path);
 				}
 			//loginConfig.setFirstStart(true);
 
 			SPManager spManager=new SPManager(context);
 			spManager.saveLoginConfig(loginConfig);// 保存用户配置信息
-
 			startLoadService();
 			context.startActivity(intent);
 			activitySupport.finish();

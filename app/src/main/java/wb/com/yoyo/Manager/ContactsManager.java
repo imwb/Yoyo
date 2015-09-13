@@ -105,4 +105,7 @@ public class ContactsManager {
         return user;
     }
 
+    public User getUserFromDB(String jid) {
+       return dbManager.getUserByJid(jid);
+    }
 }

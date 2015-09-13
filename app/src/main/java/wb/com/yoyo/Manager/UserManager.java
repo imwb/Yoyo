@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import wb.com.yoyo.Model.User;
 import wb.com.yoyo.Utils.BitmapUtils;
 import wb.com.yoyo.Utils.StringUtil;
 
@@ -26,6 +27,7 @@ import wb.com.yoyo.Utils.StringUtil;
  */
 public class UserManager {
     public static UserManager manager;
+
 
 
     /**
@@ -95,12 +97,24 @@ public class UserManager {
     }
 
 
-    public static Bitmap getUserAvaterFromSD(String path) {
-
-
+    public static Bitmap getUserAvaterFromSDBypath(String path) {
 
         Bitmap bitmap=BitmapUtils.getBitmapByOption(path, 50, 50);
 
         return bitmap;
+    }
+    public static Bitmap getUserAvaterFromSDByJID(String jid,Context context) {
+
+        ContactsManager contactsManager=new ContactsManager(context);
+        User user=contactsManager.getUserFromDB(jid);
+        Bitmap bitmap=BitmapUtils.getBitmapByOption(user.getAvatar_path(), 80, 80);
+
+        return bitmap;
+    }
+
+    public static Bitmap getMyAvarta( Context context) {
+        SPManager spManager=new SPManager(context);
+        String path=spManager.getLoginConfig().getAvatarpath();
+        return BitmapUtils.getBitmapByOption(path,80,80);
     }
 }

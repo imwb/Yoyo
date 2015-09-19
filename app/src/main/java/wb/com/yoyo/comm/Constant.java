@@ -30,4 +30,25 @@ public class Constant {
     public static final String XMPP_CONNECTION_CLOSED = "xmpp_connection_closed";// 连接中断
     public static final String LOGIN = "login"; // 登录
     public static final String RELOGIN = "relogin"; // 重新登录
+
+    /**
+     * 精确到毫秒
+     */
+//	public static final String MS_FORMART = "yyyy-MM-dd HH:mm:ss SSS";
+    public static final String MS_FORMART = "MM-dd HH:mm:ss";
+
+    /**
+     * 文件类型
+     */
+    public static final String  FILETYPE_IMAGE="image";
+    public static final String  FILETYPE_VOICE="voice";
+
+    /**
+     * 收到好友邀请请求
+     */
+    public static final String ROSTER_SUBSCRIPTION = "roster.subscribe";
+    public static final String ROSTER_SUB_FROM = "roster.subscribe.from";
+    public static final String NOTICE_ID = "notice.id";
+
+    public static final String NEW_MESSAGE_ACTION = "roster.newmessage";
 }

@@ -90,7 +90,7 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 				BitmapUtils.savaBitmap(file, loginConfig.getUsername()+".png", bitmap);
 //				StaticPara.userName=vCard.getNickName();
 				//内存问题？？
-				String path=file.getPath()+loginConfig.getUsername()+".png";
+				String path=file.getPath()+"/"+loginConfig.getUsername()+".png";
 				loginConfig.setAvatarpath(path);
 				}
 			//loginConfig.setFirstStart(true);

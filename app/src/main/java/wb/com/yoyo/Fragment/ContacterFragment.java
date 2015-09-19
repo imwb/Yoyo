@@ -2,23 +2,28 @@ package wb.com.yoyo.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.usb.UsbRequest;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jivesoftware.smackx.packet.VCard;
 
 import java.io.File;
 import java.util.List;
 
+import wb.com.yoyo.Activity.ChatActivity;
 import wb.com.yoyo.Manager.ContactsManager;
 import wb.com.yoyo.Manager.UserManager;
 import wb.com.yoyo.Model.User;
@@ -48,6 +53,20 @@ public class ContacterFragment extends Fragment {
 		contactsManager=new ContactsManager(getActivity());
 		AllContacterAdapter adapter = new AllContacterAdapter(contactsManager.getContactsFromDB(),getActivity());
 		listView.setAdapter(adapter);
+
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				User user= (User) view.findViewById(R.id.tv_user_nickname).getTag();
+				createChat(user);
+			}
+		});
+	}
+
+	private void createChat(User user) {
+		Intent intent=new Intent(getActivity(), ChatActivity.class);
+		intent.putExtra("to",user.getJID());
+		startActivity(intent);
 	}
 }
 class AllContacterAdapter extends BaseAdapter {
@@ -63,6 +82,9 @@ class AllContacterAdapter extends BaseAdapter {
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
+	/**
+	 *listview 现调用 getCount 得到listview 要显示的记录数 ，在调用getView绘制每条记录
+	 */
 	@Override
 
 	public int getCount() {
@@ -83,23 +105,37 @@ class AllContacterAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int arg0, View arg1, ViewGroup arg2) {
-		// TODO Auto-generated method stub
-		ViewGroup viewGroup=(ViewGroup) inflater.inflate(R.layout.contact_item, null);
-		ImageView iv_user_pic=(ImageView) viewGroup.findViewById(R.id.iv_user_pic);
-		TextView nickname=(TextView) viewGroup.findViewById(R.id.tv_user_nickname);
-		User user=list.get(arg0);
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder viewHolder;
+		if(convertView == null){
+			viewHolder=new ViewHolder();
+			convertView=inflater.inflate(R.layout.contact_item,null);
+			viewHolder.iv_userpic= (ImageView) convertView.findViewById(R.id.iv_user_pic);
+			viewHolder.nickname= (TextView) convertView.findViewById(R.id.tv_user_nickname);
+			convertView.setTag(viewHolder);
+		}else {
+			viewHolder= (ViewHolder) convertView.getTag();
+		}
 
-		String path = user.getAvatar_path();
-		Bitmap bitmap=UserManager.getUserAvaterFromSD(path);
+		User user=list.get(position);
 
-		if(bitmap!=null)
-			iv_user_pic.setImageBitmap(bitmap);
+		viewHolder.nickname.setText(user.getName());
+		viewHolder.iv_userpic.setImageBitmap(UserManager.getUserAvaterFromSDBypath(user.getAvatar_path()));
 
-		nickname.setText(user.getName());
-		nickname.setTag(user);
+		viewHolder.nickname.setTag(user);
 
-		return viewGroup;
+		return convertView;
 	}
 
+
+
+	/**
+	 * adaper 优化 viewHolder
+	 */
+	static class ViewHolder{
+
+		ImageView iv_userpic;
+		TextView nickname;
+
+	}
 }

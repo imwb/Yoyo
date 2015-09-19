@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import wb.com.yoyo.Manager.SPManager;
@@ -207,5 +208,18 @@ public class ActivitySupport extends FragmentActivity implements IActivitySuppor
     @Override
     public LoginConfig getLoginConfig() {
         return spManager.getLoginConfig();
+    }
+    /**
+     *
+     * 关闭键盘事件
+     *
+
+     */
+    public void closeInput() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && this.getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus()
+                    .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

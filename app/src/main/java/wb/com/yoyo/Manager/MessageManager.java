@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import wb.com.yoyo.DB.DBManager;
+import wb.com.yoyo.Model.ChartHisBean;
 import wb.com.yoyo.Model.IMMessage;
 
 /**
@@ -36,5 +37,9 @@ public class MessageManager {
 
     public List<IMMessage> getMessageListByFrom(String from, int pageNum, int pageSize) {
         return dbmanager.getMessageListByFrom(from,pageNum,pageSize);
+    }
+
+    public List<ChartHisBean> getRecentContactsWithLastMsg() {
+        return dbmanager.getRecentContactsWithLadtMsg();
     }
 }

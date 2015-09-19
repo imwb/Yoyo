@@ -108,4 +108,6 @@ public class ContactsManager {
     public User getUserFromDB(String jid) {
        return dbManager.getUserByJid(jid);
     }
+
+
 }
